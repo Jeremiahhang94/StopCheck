@@ -6,22 +6,47 @@
  */
 public class LocationActivity extends LocationReminderActivity {
 
-	// private Reminder[] allReminders;
+	private Reminder[] allReminders;
+	
+	
+	/**
+	 * @category getter
+	 * @return the allReminders
+	 */
+	public Reminder[] getAllReminders() {
+		return allReminders;
+	}
+
+	/**
+	 * @category setter
+	 * @param allReminders the allReminders to set
+	 */
+	public void setAllReminders(Reminder[] allReminders) {
+		this.allReminders = allReminders;
+	}
 
 	public LocationActivity() {
 		System.out.println("Lets go!");
 	}
 
-	public void getAllReminder() {
+	public void setAllReminder() {
 		// Request from location manager all the reminders
 		// attached to this location,
 		// upon completion, prints out all the reminder
+		
+		Reminder[] reminders = this.locationManager.remindersOfLocationId(this.locationId); 
+		this.allReminders = reminders;
+		this.presentAllReminder();
+		
 	}
 
 	public void presentAllReminder() {
 		// Prints out all the reminder
 		// that this location have
 		// prints "No reminder" if there isnt any.
+		
+		System.out.println(this.allReminders);
+		
 	}
 
 	public void reminderSelected() {
@@ -54,9 +79,14 @@ public class LocationActivity extends LocationReminderActivity {
 		// and ">" sign on the right
 	}
 
-	public void sendReminderToDelete() {
+	public void sendReminderToDelete(Reminder reminder) {
 		// sends the reminder to the database to be
 		// deleted.
+		
+		boolean deleted = this.locationManager.deleteReminder(reminder);
+		if(deleted)
+			this.removeReminderCell();
+		
 	}
 
 	public void removeReminderCell() {

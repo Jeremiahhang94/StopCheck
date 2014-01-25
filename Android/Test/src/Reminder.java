@@ -11,7 +11,7 @@ public class Reminder {
 	public String[] notes;
 	public int[] days;
 	public boolean shouldRepeatWeekly;
-	public int triggerType;
+	public TriggerType triggerType;
 	public boolean isTurnedOn;
 	public String startDate;
 	

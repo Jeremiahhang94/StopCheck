@@ -23,6 +23,10 @@ public class AllLocationViewController extends LocationReminderActivity {
 		 * Request from location manager
 		 * all the location in the database
 		 */
+		
+		Location[] allLocation = this.locationManager().allLocation();
+		this.allLocations = allLocation;
+		
 	}
 	
 	public void presentAllLocation()
@@ -30,6 +34,14 @@ public class AllLocationViewController extends LocationReminderActivity {
 		/*
 		 * print out all the location
 		 */
+		
+		int ii=0, length = this.allLocations.length;
+		Location currentLocation;
+		for(ii=0; ii<length; ii++)
+		{
+			currentLocation = (Location)allLocations[ii];
+			System.out.println(currentLocation);
+		}
 	}
 	
 	public void editBtnPressed()
@@ -39,6 +51,9 @@ public class AllLocationViewController extends LocationReminderActivity {
 		 * brings the view into an edit mode where user 
 		 * can select Locations to be deleted.
 		 */
+		
+		
+		
 	}
 	
 	public void deleteBtnPressed()

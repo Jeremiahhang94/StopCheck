@@ -13,8 +13,12 @@ public class UpdateReminderNotesActivity extends ReminderNotesActivity {
 	}
 
 	public void fetchAllNotesOfReminder() {
-		// Request from location manager
-		// all the notes this reminder have
+		// set all the notes this reminder have
+		
+		String[] notes = this.reminder.notes;
+		this.setNotes(notes);
+		
+		
 	}
 
 	@Override

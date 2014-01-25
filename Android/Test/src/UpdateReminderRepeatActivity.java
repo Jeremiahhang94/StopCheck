@@ -16,6 +16,15 @@ public class UpdateReminderRepeatActivity extends ReminderRepeatActivity {
 		 * loads the selectable days, highgliting the days that are already
 		 * selected
 		 */
+		
+		int ii, length = 4; //this.buttons.length;
+		for(ii=0; ii<length; ii++)
+		{
+			if(this.days[ii] == 1)
+			{
+				//press button
+			}
+		}
 	}
 
 	@Override

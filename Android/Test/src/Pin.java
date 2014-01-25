@@ -15,4 +15,5 @@ public class Pin {
 	public Image image;
 	public Location location;
 	
+	
 }

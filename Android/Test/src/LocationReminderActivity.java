@@ -1,10 +1,10 @@
 public class LocationReminderActivity {
 
-	private int locationId;
-	private Location location;
-	private int reminderId;
-	private Reminder reminder;
-	private LocationManager locationManager;
+	protected int locationId;
+	protected Location location;
+	protected int reminderId;
+	protected Reminder reminder;
+	protected LocationManager locationManager;
 
 	public LocationReminderActivity() {
 		this.setLocation(null);
@@ -13,9 +13,14 @@ public class LocationReminderActivity {
 		System.out.println("Created");
 	}
 	
-	public String locationManager() {
-		return "Hello Babe! LocationId: " + this.locationId + " ReminderId: "
-				+ this.reminderId;
+	public LocationManager locationManager() {
+		
+		if(this.locationManager == null)
+		{
+			this.locationManager = new LocationManager();
+		}
+		
+		return this.locationManager;
 	}
 	
 

@@ -49,6 +49,17 @@ public class LocationManager
 	{
 		return new Location();
 	}
+	public Location[] monitoredLocations()
+	{
+		Location[] monitoredLocation = new Location[4];
+		return monitoredLocation;
+	}
+	public Location[] allLocation()
+	{
+		Location[] allLocation = new Location[4];
+		return allLocation;
+	}
+	
 	public boolean updateLocation(Location location)
 	{
 		return true;
