@@ -1,9 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">My First App</string>
+    <string name="app_name">StopCheck</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
-    <string name="HelloButton">Hello World!</string>
+    <string name="title_activity_location_reminder">LocationReminderActivity</string>
+    <string name="title_activity_location">LocationActivity</string>
+    <string name="title_activity_reminder_notes">ReminderNotesActivity</string>
+    <string name="title_activity_update_reminder_notes">UpdateReminderNotesActivity</string>
+    <string name="title_activity_reminder_repeat">ReminderRepeatActivity</string>
+    <string name="title_activity_update_reminder_repeat">UpdateReminderRepeatActivity</string>
+    <string name="title_activity_all_location">AllLocationActivity</string>
+    <string name="mapButton">HORRAY!</string>
+    <string name="all_activity">FUCK YEAAA!</string>
+    <string name="reminder">Reminder</string>
+    <string name="add_note">+ Reminder</string>
+    <string name="view_reminders">View Reminders</string>
 
 </resources>
