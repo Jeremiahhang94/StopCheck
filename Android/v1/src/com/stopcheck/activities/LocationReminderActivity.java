@@ -24,6 +24,8 @@ public class LocationReminderActivity extends Activity {
 		this.setLocation(null);
 		this.setReminder(null);
 		this.setLocationManager(null);
+		this.locationManager().setContext(this);
+		
 		System.out.println("Created");
 	}
 	

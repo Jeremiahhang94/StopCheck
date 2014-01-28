@@ -1,5 +1,12 @@
 package com.stopcheck.classes;
 
+import java.util.List;
+
+import android.content.Context;
+
+import com.stopcheck.databases.LocationDataSource;
+import com.stopcheck.databases.ReminderDataSource;
+
 /*
  * Created: 24 Jan 2014
  * Author: Jeremiah
@@ -12,6 +19,10 @@ package com.stopcheck.classes;
 
 public class LocationManager {
 
+	private LocationDataSource locationDataSource;
+	private ReminderDataSource reminderDataSource;
+	private Context context;
+	
 	public LocationManager()
 	{
 		
@@ -19,12 +30,16 @@ public class LocationManager {
 	
 	public boolean createReminder(Reminder reminder)
 	{
-		return true;
+		Reminder newReminder = this.getReminderDataSource().insert(reminder);
+		if(newReminder != null)
+			return true;
+		else return false;
 	}
 	
 	public Reminder reminderOfId(int id)
 	{
-		return new Reminder();
+		Reminder newReminder = this.getReminderDataSource().queryById(id);
+		return newReminder;
 	}
 	
 	public Reminder[] remindersOfLocationId(int id)
@@ -34,23 +49,31 @@ public class LocationManager {
 	
 	public boolean updateReminder(Reminder reminder)
 	{
-		return true;
+		boolean updated = this.getReminderDataSource().update(reminder);
+		return updated;
 	}
 	public boolean deleteReminder(Reminder reminder)
 	{
-		return true;
+		boolean deleted = this.getReminderDataSource().delete(reminder);
+		return deleted;
 	}
 	public boolean toggleReminder(Reminder reminder)
 	{
-		return true;
+		reminder.isTurnedOn = !reminder.isTurnedOn;
+		boolean updated = this.updateReminder(reminder);
+		return updated;
 	}
 	public boolean createLocation(Location location)
 	{
-		return true;
+		Location newLocation = this.getLocationDataSource().insert(location);
+		if(newLocation != null)
+			return true;
+		else return false;
 	}
 	public Location locationOfId(int id)
 	{
-		return new Location();
+		Location newLocation = this.getLocationDataSource().queryById(id);
+		return newLocation;
 	}
 	public Location[] monitoredLocations()
 	{
@@ -59,17 +82,27 @@ public class LocationManager {
 	}
 	public Location[] allLocation()
 	{
-		Location[] allLocation = new Location[4];
-		return allLocation;
+		List<Location> allLocation = this.getLocationDataSource().queryAll();
+		Location[] locations = new Location[allLocation.size()];
+		
+		int ii, length = locations.length;
+		for(ii=0;ii<length;ii++)
+		{
+			locations[ii] = allLocation.get(ii);
+		}
+	
+		return locations;
 	}
 	
 	public boolean updateLocation(Location location)
 	{
-		return true;
+		boolean updated = this.getLocationDataSource().update(location);
+		return updated;
 	}
 	public boolean deleteLocation(Location location)
 	{
-		return true;
+		boolean deleted = this.getLocationDataSource().delete(location);
+		return deleted;
 	}
 	public boolean shouldChangeMonitoringStatusOfLocation(Location location)
 	{
@@ -79,5 +112,49 @@ public class LocationManager {
 	{
 		
 	}
+
+	/**
+	 * @category getter
+	 * @return the locationDataSource
+	 */
+	public LocationDataSource getLocationDataSource() {
+		if(locationDataSource == null)
+			locationDataSource = new LocationDataSource(this.context);
+		return locationDataSource;
+	}
+
+	/**
+	 * @category setter
+	 * @param locationDataSource the locationDataSource to set
+	 */
+	public void setLocationDataSource(LocationDataSource locationDataSource) {
+		this.locationDataSource = locationDataSource;
+	}
+
+	/**
+	 * @category getter
+	 * @return the reminderDataSource
+	 */
+	public ReminderDataSource getReminderDataSource() {
+		if(reminderDataSource == null)
+			reminderDataSource = new ReminderDataSource(this.context);
+		return reminderDataSource;
+	}
+
+	/**
+	 * @category setter
+	 * @param reminderDataSource the reminderDataSource to set
+	 */
+	public void setReminderDataSource(ReminderDataSource reminderDataSource) {
+		this.reminderDataSource = reminderDataSource;
+	}
 	
+	/**
+	 * @category setter
+	 * @param context the context to set
+	 */
+	public void setContext(Context context)
+	{
+		this.context = context;
+	}
 }
