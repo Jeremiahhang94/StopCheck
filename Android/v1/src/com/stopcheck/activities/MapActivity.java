@@ -98,7 +98,7 @@ public class MapActivity extends LocationReminderActivity {
 		 * and drop them as a monitored pin on the map
 		 */
 		
-		Location[] monitoredLocation = this.locationManager().monitoredLocations();
+		Location[] monitoredLocation = (Location[]) this.locationManager().monitoredLocations().toArray();
 		if(monitoredLocation != null)
 		{
 			int ii=0, length = monitoredLocation.length;

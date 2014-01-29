@@ -9,7 +9,6 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 
-import com.stopcheck.classes.Location;
 import com.stopcheck.classes.Reminder;
 import com.stopcheck.classes.TriggerType;
 

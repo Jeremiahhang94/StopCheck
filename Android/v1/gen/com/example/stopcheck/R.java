@@ -21,13 +21,15 @@ public final class R {
         public static final int activity_vertical_margin=0x7f040001;
     }
     public static final class drawable {
-        public static final int ic_launcher=0x7f020000;
+        public static final int ic_action_new=0x7f020000;
+        public static final int ic_launcher=0x7f020001;
     }
     public static final class id {
         public static final int Button01=0x7f080002;
+        public static final int action_add=0x7f080004;
         public static final int action_settings=0x7f080003;
-        public static final int button1=0x7f080000;
-        public static final int button2=0x7f080001;
+        public static final int button1=0x7f080001;
+        public static final int location_listView=0x7f080000;
     }
     public static final class layout {
         public static final int activity_all_location=0x7f030000;
@@ -55,6 +57,8 @@ public final class R {
         public static final int all_activity=0x7f05000b;
         public static final int app_name=0x7f050000;
         public static final int hello_world=0x7f050002;
+        public static final int location_add_reminder=0x7f05000f;
+        public static final int location_add_string_short=0x7f050010;
         public static final int mapButton=0x7f05000a;
         public static final int reminder=0x7f05000c;
         public static final int title_activity_all_location=0x7f050009;

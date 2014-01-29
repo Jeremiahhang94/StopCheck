@@ -28,4 +28,9 @@ public class Reminder {
 		return " "+this.days[0];
 	}
 	
+	@Override
+	public String toString()
+	{
+		return this.notesString();
+	}
 }

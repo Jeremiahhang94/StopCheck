@@ -16,5 +16,7 @@
     <string name="reminder">Reminder</string>
     <string name="add_note">+ Reminder</string>
     <string name="view_reminders">View Reminders</string>
+    <string name="location_add_reminder">Add Reminder</string>
+    <string name="location_add_string_short">add</string>
 
 </resources>

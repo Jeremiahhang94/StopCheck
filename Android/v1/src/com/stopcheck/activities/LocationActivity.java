@@ -7,21 +7,36 @@ package com.stopcheck.activities;
  * Purpose: The activity that would display all the reminder of a given location
  */
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
 import com.example.stopcheck.R;
 import com.stopcheck.classes.Reminder;
 
 public class LocationActivity extends LocationReminderActivity {
 
+	public static final String KEY_LOCATION = "keyLocation";
+	
 	private Reminder[] allReminders;
+	private ListView listView;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_location);
+		
+		//get and set location id
+		Intent intent = this.getIntent();
+		retrieveLocationid(intent);
+		
+		//set up listview
+		this.initListView();
+		
 	}
 
 	@Override
@@ -39,6 +54,19 @@ public class LocationActivity extends LocationReminderActivity {
 		finish();
 	}
 	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item)
+	{
+		switch(item.getItemId())
+		{
+		case R.id.action_add:
+			this.addReminderBtnPressed();
+			return true;
+		default:
+			return super.onOptionsItemSelected(item);
+		}
+	}
+	
 	/**
 	 * @category getter
 	 * @return the allReminders
@@ -53,17 +81,7 @@ public class LocationActivity extends LocationReminderActivity {
 	 */
 	public void setAllReminders(Reminder[] allReminders) {
 		this.allReminders = allReminders;
-	}
-
-	public void setAllReminder() {
-		// Request from location manager all the reminders
-		// attached to this location,
-		// upon completion, prints out all the reminder
-		
-		Reminder[] reminders = this.locationManager.remindersOfLocationId(this.locationId); 
-		this.allReminders = reminders;
-		this.presentAllReminder();
-		
+		this.reloadList();
 	}
 
 	public void presentAllReminder() {
@@ -79,12 +97,12 @@ public class LocationActivity extends LocationReminderActivity {
 		// present UpdateReminderNotesActivity activity,
 		// with reminderId and locationid
 		// for the user to edit the selected reminder
-		
+
 		this.startActivityOfClass(UpdateReminderNotesActivity.class);
 		
 	}
 
-	public void addReminderBtnPressed(View v) {
+	public void addReminderBtnPressed() {
 		// Button listener for addReminderBtn
 		// presents ReminderNotesActivity with reminderId of 0 and
 		// the locationId, for the user to add a reminder
@@ -124,5 +142,28 @@ public class LocationActivity extends LocationReminderActivity {
 	public void removeReminderCell() {
 		// remove the cell from the view
 	}
+	
+	public void reloadList()
+	{
+		
+	}
+	
+	public void retrieveLocationid(Intent intent)
+	{
+		int id = intent.getIntExtra(KEY_LOCATION, 0);
+		this.locationId = id;
+	}
 
+	public void initListView()
+	{
+		listView = (ListView)findViewById(R.id.location_listView);
+		//set up listview adapter
+		//List<String> values = this.locationManager().remindersOfLocationId(this.locationId);
+		String[] values = {"Hello", "Byebye", "Goodnight"};
+		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, 
+				android.R.layout.simple_list_item_1, 
+				values);
+		
+		listView.setAdapter(adapter);
+	}
 }

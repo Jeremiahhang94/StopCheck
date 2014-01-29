@@ -42,7 +42,7 @@ public class AllLocationActivity extends LocationReminderActivity {
 		 * all the location in the database
 		 */
 		
-		Location[] allLocation = this.locationManager().allLocation();
+		Location[] allLocation = (Location[]) this.locationManager().allLocation().toArray();
 		this.allLocations = allLocation;
 		
 	}

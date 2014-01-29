@@ -42,9 +42,10 @@ public class LocationManager {
 		return newReminder;
 	}
 	
-	public Reminder[] remindersOfLocationId(int id)
+	public List<Reminder> remindersOfLocationId(int id)
 	{
-		return new Reminder[8];
+		//TODO update method to return reminders of selected location id
+		return null;
 	}
 	
 	public boolean updateReminder(Reminder reminder)
@@ -75,23 +76,15 @@ public class LocationManager {
 		Location newLocation = this.getLocationDataSource().queryById(id);
 		return newLocation;
 	}
-	public Location[] monitoredLocations()
+	public List<Location> monitoredLocations()
 	{
-		Location[] monitoredLocation = new Location[4];
-		return monitoredLocation;
+		//TODO update method to return monitored locations
+		return null;
 	}
-	public Location[] allLocation()
+	public List<Location> allLocation()
 	{
 		List<Location> allLocation = this.getLocationDataSource().queryAll();
-		Location[] locations = new Location[allLocation.size()];
-		
-		int ii, length = locations.length;
-		for(ii=0;ii<length;ii++)
-		{
-			locations[ii] = allLocation.get(ii);
-		}
-	
-		return locations;
+		return allLocation;
 	}
 	
 	public boolean updateLocation(Location location)
@@ -106,11 +99,12 @@ public class LocationManager {
 	}
 	public boolean shouldChangeMonitoringStatusOfLocation(Location location)
 	{
+		//TODO update method to check if a location should change its monitoring status
 		return true;
 	}
 	public void changeMonitoringStatusOfLocation(Location location)
 	{
-		
+		//TODO update method to change the monitoring status
 	}
 
 	/**
@@ -119,7 +113,11 @@ public class LocationManager {
 	 */
 	public LocationDataSource getLocationDataSource() {
 		if(locationDataSource == null)
+		{
 			locationDataSource = new LocationDataSource(this.context);
+			locationDataSource.open();
+		}
+		
 		return locationDataSource;
 	}
 
@@ -137,7 +135,11 @@ public class LocationManager {
 	 */
 	public ReminderDataSource getReminderDataSource() {
 		if(reminderDataSource == null)
+		{
 			reminderDataSource = new ReminderDataSource(this.context);
+			reminderDataSource.open();
+		}
+			
 		return reminderDataSource;
 	}
 
@@ -157,4 +159,5 @@ public class LocationManager {
 	{
 		this.context = context;
 	}
+	
 }
